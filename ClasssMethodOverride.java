@@ -1,3 +1,6 @@
+import java.lang.reflect.Method;
+
+import android.util.Log;
 
 class Parent {
 
@@ -5,7 +8,6 @@ class Parent {
 		Log.e("test", "Parent first");
 	}
 }
-
 
 class Children extends Parent {
 
@@ -24,45 +26,44 @@ class Children extends Parent {
 
 }
 
-public static void main(String[] args) {					
-					
-    String method_name = "first";
-    Children child = new Children();
-    
-    boolean ret = testCase(child, method_name);
-    Log.e("test", "Children has overridden '" + method_name + "': " + ret);
-					
-					
-    method_name = "second";
-    ret = testCase(child, method_name);
-    Log.e("test", "Children has overridden '" + method_name + "': " + ret);
-					
-					
-    method_name = "third";
-    ret = testCase(child, method_name);
-    Log.e("test", "Children has overridden '" + method_name + "': " + ret);
-}
+public class ClasssMethodOverride {
 
-	
-public static boolean testCase(Object child, final String method_name) {
-		
+	public static void test() {
+
+		String method_name = "first";
+		Children child = new Children();
+
+		boolean ret = testCase(child, method_name);
+		Log.e("test", "Children has overridden '" + method_name + "': " + ret);
+
+		method_name = "second";
+		ret = testCase(child, method_name);
+		Log.e("test", "Children has overridden '" + method_name + "': " + ret);
+
+		method_name = "third";
+		ret = testCase(child, method_name);
+		Log.e("test", "Children has overridden '" + method_name + "': " + ret);
+	}
+
+	public static boolean testCase(Object child, final String method_name) {
+
 		Method[] cfs = child.getClass().getDeclaredMethods();
 		Method[] pfs = child.getClass().getSuperclass().getDeclaredMethods();
-		
+
 		for (Method bm : cfs) {
-			
+
 			if (!bm.getName().equals(method_name)) {
 				continue;
 			}
-			
+
 			for (Method am : pfs) {
-				
+
 				if (!am.getName().equals(method_name)) {
 					continue;
 				}
-								
-				if ( /*bm.getName().equals(am.getName()) && */
-						bm.getReturnType().equals(am.getReturnType())) {
+
+				if ( /* bm.getName().equals(am.getName()) && */
+				bm.getReturnType().equals(am.getReturnType())) {
 
 					Class<?>[] bc = bm.getParameterTypes();
 					Class<?>[] ac = am.getParameterTypes();
@@ -78,8 +79,9 @@ public static boolean testCase(Object child, final String method_name) {
 						}
 
 						if (isEqual) {
-							Log.e("test", " \"" + child.getClass().getSimpleName() + "\" override method: " + bm.getName() + " of \""
-									+ child.getClass().getSuperclass().getSimpleName() + "\"");
+							Log.e("test",
+									" \"" + child.getClass().getSimpleName() + "\" override method: " + bm.getName()
+											+ " of \"" + child.getClass().getSuperclass().getSimpleName() + "\"");
 							return true;
 						}
 
@@ -87,7 +89,8 @@ public static boolean testCase(Object child, final String method_name) {
 				}
 			}
 		}
-		
-    return false;	
-}
 
+		return false;
+	}
+
+}
