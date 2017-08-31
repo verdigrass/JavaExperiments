@@ -6,21 +6,23 @@ class Parent {
 	}
 }
 
-{					
-					String method_name = "first";
-					Children child = new Children();
+public static void main(String[] args) {					
 					
-					boolean ret = Children.testCase(child, method_name);
-					Log.e("test", "Children has overridden '" + method_name + "': " + ret);
+    String method_name = "first";
+    Children child = new Children();
+    
+    boolean ret = Children.testCase(child, method_name);
+    Log.e("test", "Children has overridden '" + method_name + "': " + ret);
 					
-					method_name = "second";
-					ret = Children.testCase(child, method_name);
-					Log.e("test", "Children has overridden '" + method_name + "': " + ret);
 					
-					method_name = "third";
-					ret = Children.testCase(child, method_name);
-					Log.e("test", "Children has overridden '" + method_name + "': " + ret);		
-
+    method_name = "second";
+    ret = Children.testCase(child, method_name);
+    Log.e("test", "Children has overridden '" + method_name + "': " + ret);
+					
+					
+    method_name = "third";
+    ret = Children.testCase(child, method_name);
+    Log.e("test", "Children has overridden '" + method_name + "': " + ret);
 }
 
 class Children extends Parent {
