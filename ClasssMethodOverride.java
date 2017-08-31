@@ -6,6 +6,24 @@ class Parent {
 	}
 }
 
+
+class Children extends Parent {
+
+	@Override
+	public void first(int i) {
+		Log.e("test", "Children first");
+	}
+
+	public void second() {
+		Log.e("test", "Children second");
+	}
+
+	public void third() {
+		Log.e("test", "Children third");
+	}
+
+}
+
 public static void main(String[] args) {					
 					
     String method_name = "first";
@@ -73,19 +91,3 @@ public static boolean testCase(Object child, final String method_name) {
     return false;	
 }
 
-class Children extends Parent {
-
-	@Override
-	public void first(int i) {
-		Log.e("test", "Children first");
-	}
-
-	public void second() {
-		Log.e("test", "Children second");
-	}
-
-	public void third() {
-		Log.e("test", "Children third");
-	}
-
-}
