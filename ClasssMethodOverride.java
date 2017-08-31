@@ -11,36 +11,22 @@ public static void main(String[] args) {
     String method_name = "first";
     Children child = new Children();
     
-    boolean ret = Children.testCase(child, method_name);
+    boolean ret = testCase(child, method_name);
     Log.e("test", "Children has overridden '" + method_name + "': " + ret);
 					
 					
     method_name = "second";
-    ret = Children.testCase(child, method_name);
+    ret = testCase(child, method_name);
     Log.e("test", "Children has overridden '" + method_name + "': " + ret);
 					
 					
     method_name = "third";
-    ret = Children.testCase(child, method_name);
+    ret = testCase(child, method_name);
     Log.e("test", "Children has overridden '" + method_name + "': " + ret);
 }
 
-class Children extends Parent {
-
-	@Override
-	public void first(int i) {
-		Log.e("test", "Children first");
-	}
-
-	public void second() {
-		Log.e("test", "Children second");
-	}
-
-	public void third() {
-		Log.e("test", "Children third");
-	}
-
-	public static boolean testCase(Object child, final String method_name) {
+	
+public static boolean testCase(Object child, final String method_name) {
 		
 		Method[] cfs = child.getClass().getDeclaredMethods();
 		Method[] pfs = child.getClass().getSuperclass().getDeclaredMethods();
@@ -84,6 +70,22 @@ class Children extends Parent {
 			}
 		}
 		
-		return false;
-		
+    return false;	
+}
+
+class Children extends Parent {
+
+	@Override
+	public void first(int i) {
+		Log.e("test", "Children first");
 	}
+
+	public void second() {
+		Log.e("test", "Children second");
+	}
+
+	public void third() {
+		Log.e("test", "Children third");
+	}
+
+}
